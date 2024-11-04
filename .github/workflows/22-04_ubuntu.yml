@@ -23,17 +23,13 @@ jobs:
 
       - name: Configure Chrome Remote Desktop
         run: |
-          # Start the Chrome Remote Desktop host with the provided access code
+          # Start Chrome Remote Desktop with the specified code and PIN
           DISPLAY= /opt/google/chrome-remote-desktop/start-host \
-          --code="4/0AVG7fiSvwohPNnfvEBODlcMVELAqBYDs_G9lyRL2ofVImGVOY65fEyAdXuBXmHSVCMaDsw" \
+          --code="4/0AVG7fiTukC_tvW4n5khrwWM7dRvaGZT_rgMjIjQv3vxeuuxDgQIVKAnDha1DEbqfuWifzg" \
           --redirect-url="https://remotedesktop.google.com/_/oauthredirect" \
-          --name="$(hostname)"
+          --name="$(hostname)" \
+          --pin="123456"  # Set the PIN directly
 
-      - name: Set Remote Desktop Access Code
-        run: |
-          echo "Access Code: 123456"  # This is where you specify the 6-digit code (just for information, won't set it automatically)
-          # You would replace this echo with the actual command to set the access code if needed
-          
       - name: Enable Firewall Rule for RDP (if applicable)
         run: |
           sudo ufw allow 3389/tcp  # RDP Port
