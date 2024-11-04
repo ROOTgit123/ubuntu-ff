@@ -21,14 +21,19 @@ jobs:
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt install -y xfce4 xfce4-goodies
 
+      - name: Create User Account for RDP
+        run: |
+          sudo useradd -m -s /bin/bash runner  # Create a new user 'runner'
+          echo 'runner:runner1234' | sudo chpasswd  # Set the password for the user
+
       - name: Configure Chrome Remote Desktop
         run: |
-          # Start Chrome Remote Desktop with the specified code and keep it running
+          # Start Chrome Remote Desktop with the specified code
           DISPLAY= /opt/google/chrome-remote-desktop/start-host \
-          --code="4/0AVG7fiRirIOIfts4W0RY1UCm_p9KRMwddOfqg7Ehhgjxid8JjJ9yliG5Uec1n1oNKI150A" \
+          --code="4/0AVG7fiQQDfXW7218mkh0v-r374xm2IPIax2K_JM_eX_tDRJmTGhUFY-NGPlYiaGZCa8FzA" \
           --redirect-url="https://remotedesktop.google.com/_/oauthredirect" \
           --name="$(hostname)" \
-          --pin="123456" &  # Run in the background
+          --pin="123456" &  # Set the PIN
 
       - name: Enable Firewall Rule for RDP (if applicable)
         run: |
