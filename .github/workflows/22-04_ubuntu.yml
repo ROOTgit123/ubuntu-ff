@@ -24,7 +24,7 @@ jobs:
       - name: Create User Account for RDP
         run: |
           sudo useradd -m -s /bin/bash runner  # Create a new user 'runner'
-          echo 'runner:runner1234' | sudo chpasswd  # Set the password for the user
+          echo 'runner2:runner1234' | sudo chpasswd  # Set the password for the user
 
       - name: Configure Chrome Remote Desktop
         run: |
