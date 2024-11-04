@@ -22,15 +22,18 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install -y xfce4 xfce4-goodies
 
       - name: Configure Chrome Remote Desktop
-        env:
-          CODE: "4/0AVG7fiR0Or44iaMFuidRdQnlih1neGka8icbbvTFL_2FeJ82AuIyXe2WlYdorP89m4ZSyA"  # Replace with your actual authorization code
         run: |
-          # Start the Chrome Remote Desktop host with the provided code
+          # Start the Chrome Remote Desktop host with the provided access code
           DISPLAY= /opt/google/chrome-remote-desktop/start-host \
-          --code="${CODE}" \
+          --code="4/0AVG7fiR0Or44iaMFuidRdQnlih1neGka8icbbvTFL_2FeJ82AuIyXe2WlYdorP89m4ZSyA" \
           --redirect-url="https://remotedesktop.google.com/_/oauthredirect" \
           --name="$(hostname)"
 
+      - name: Set Remote Desktop Access Code
+        run: |
+          echo "Access Code: 123456"  # This is where you specify the 6-digit code (just for information, won't set it automatically)
+          # You would replace this echo with the actual command to set the access code if needed
+          
       - name: Enable Firewall Rule for RDP (if applicable)
         run: |
           sudo ufw allow 3389/tcp  # RDP Port
