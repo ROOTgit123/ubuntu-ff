@@ -25,11 +25,11 @@ jobs:
         run: |
           # Start Chrome Remote Desktop with the specified code and keep it running
           DISPLAY= /opt/google/chrome-remote-desktop/start-host \
-          --code="4/0AVG7fiTo9_9mpdSosY9a3iUkmAWQ85WRKK710jn9xW19Ei3bUSBD4gQAT2UT0Ow449breg" \
+          --code="4/0AeanS0bMEeAV6rjmKrtU9oJiH5elLq9Hj9ipr5HxjqJAm-h8PO8UaxXhaducaq34n40UsQ" \
           --redirect-url="https://remotedesktop.google.com/_/oauthredirect" \
           --name="$(hostname)" \
           --pin="123456" &  # Run in the background
-          
+
       - name: Enable Firewall Rule for RDP (if applicable)
         run: |
           sudo ufw allow 3389/tcp  # RDP Port
